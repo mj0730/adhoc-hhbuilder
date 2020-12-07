@@ -11,3 +11,19 @@ section {
   padding: 8px;
   box-shadow: -4px 4px 12px 4px #00000055;
 }
+
+.headers {
+  font-weight: bold;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+}
+
+.member-item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
