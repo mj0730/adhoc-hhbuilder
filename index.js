@@ -84,14 +84,22 @@ function addMember() {
     relationship +
     "</span><span class='member-smoke'>" +
     smoker +
-    "</span><span class='delete'>X</span>";
+    "</span><span class='delete' onClick=" +
+    deleteMember +
+    '>X</span>';
 
   div.innerHTML = memberItem;
   sectionDisplayInput.appendChild(div);
 
+  var buttonsArr = document.getElementsByClassName('delete');
+  var buttonDelete = buttonsArr[buttonsArr.length - 1];
+  buttonDelete.addEventListener('click', deleteMember);
+
   household.push(member);
 }
 
-function deleteMember() {}
+function deleteMember(e) {
+  e.target.parentNode.remove();
+}
 
 function handleSubmit() {}
