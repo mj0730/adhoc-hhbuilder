@@ -2,3 +2,12 @@
 OR
 ADD A LINK TO THIS FILE WITH JS
 */
+section {
+  background-color: beige;
+  border-radius: 10px;
+  width: 50%;
+  min-height: 200px;
+  margin: 2em auto;
+  padding: 8px;
+  box-shadow: -4px 4px 12px 4px #00000055;
+}
