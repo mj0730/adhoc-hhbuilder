@@ -8,9 +8,11 @@ h1 {
 
 .container {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
   padding: 4px;
+  margin: 2em auto;
 }
 
 button {
@@ -41,7 +43,8 @@ select {
 section {
   background-color: beige;
   border-radius: 10px;
-  width: 50%;
+  max-width: 75%;
+  min-width: max-content;
   min-height: 200px;
   margin: 2em auto;
   padding: 8px;
@@ -60,7 +63,7 @@ section {
 
 .flex > span {
   display: flex;
-  flex: 0 0 20%;
+  flex: 1 1 20%;
   justify-content: center;
 }
 
@@ -71,7 +74,7 @@ section {
 }
 
 .delete {
-  color: red;
+  color: #ff0000;
 }
 
 .tooltip {
@@ -81,7 +84,7 @@ section {
   left: 64%;
   transform: translate(-50%, 0);
   padding: 4px 8px;
-  color: red;
+  color: #ff0000;
   background-color: #eeeeee;
   border-radius: 8px;
   z-index: 99999999;
@@ -89,4 +92,34 @@ section {
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   font-size: 0.8rem;
   text-align: center;
+}
+
+@media (max-width: 620px) {
+  .container {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    margin: 1rem 0;
+    max-width: 100%;
+  }
+
+  .container > div {
+    margin: 0.5rem 0;
+  }
+
+  section {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 840px) {
+  section {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  section {
+    max-width: 50%;
+  }
 }
