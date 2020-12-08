@@ -1,7 +1,43 @@
-/* REMOVE THIS FILE BEFORE SUBMITTING AND PLACE INSIDE STYLES OBJECT
-OR
-ADD A LINK TO THIS FILE WITH JS
-*/
+h1 {
+  padding: 1.5em;
+  margin: 0 auto;
+  text-align: center;
+  color: #0e7757;
+  font-size: 2em;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 4px;
+}
+
+button {
+  background-color: #0e7757;
+  color: #ffffff;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 8px;
+  text-transform: capitalize;
+  width: 72px;
+}
+
+label {
+  font-size: 1.2rem;
+  position: relative;
+}
+
+input {
+  max-width: 80px;
+  position: relative;
+}
+
+select {
+  max-width: 120px;
+  position: relative;
+}
+
 section {
   background-color: beige;
   border-radius: 10px;
@@ -22,6 +58,12 @@ section {
   display: flex;
 }
 
+.flex > span {
+  display: flex;
+  flex: 0 0 20%;
+  justify-content: center;
+}
+
 .member-item {
   display: flex;
   flex-flow: row nowrap;
@@ -30,4 +72,21 @@ section {
 
 .delete {
   color: red;
+}
+
+.tooltip {
+  position: absolute;
+  width: 120px;
+  top: 30px;
+  left: 64%;
+  transform: translate(-50%, 0);
+  padding: 4px 8px;
+  color: red;
+  background-color: #eeeeee;
+  border-radius: 8px;
+  z-index: 99999999;
+  box-sizing: border-box;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+  text-align: center;
 }

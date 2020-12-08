@@ -11,6 +11,7 @@ var body = document.querySelector('body');
 var buttonAdd = document.querySelector('.add');
 var buttonSubmit = document.querySelector('button[type="submit"]');
 var debug = document.querySelector('.debug');
+var form = document.querySelector('form');
 var inputAge = document.querySelector('input[name="age"]');
 var inputRel = document.querySelector('select[name="rel"]');
 var inputSmoker = document.querySelector('input[name="smoker"]');
@@ -18,8 +19,11 @@ var inputSmoker = document.querySelector('input[name="smoker"]');
 var id = 1;
 var household = [];
 
-//Not allowed to touch index.html, handle styling here
-var styles = {};
+//Link stylesheet
+var styles = document.createElement('link');
+styles.setAttribute('rel', 'stylesheet');
+styles.setAttribute('href', './main.css');
+document.querySelector('head').appendChild(styles);
 
 //basic validation & setup
 inputAge.type = 'number';
@@ -27,6 +31,8 @@ inputAge.setAttribute('min', 0);
 inputAge.setAttribute('required', true);
 
 buttonAdd.type = 'button';
+
+form.classList.add('container');
 
 //event listeners
 buttonAdd.addEventListener('click', addMember);
@@ -57,13 +63,23 @@ function addMember() {
   var smoker = inputSmoker.checked ? 'Yes' : 'No';
 
   //validate required fields
+  var tooltip = document.createElement('div');
+  tooltip.classList.add('tooltip');
+  tooltip.innerHTML = 'Field is required.';
+
   if (age == '') {
     console.error('age is required');
+
+    inputAge.parentNode.appendChild(tooltip);
+
     return;
   }
 
   if (relationship == '') {
     console.error('relationship is required');
+
+    inputRel.parentNode.appendChild(tooltip);
+
     return;
   }
 
@@ -75,7 +91,7 @@ function addMember() {
   };
 
   var div = document.createElement('div');
-  div.classList.add('member-item');
+  div.classList.add('flex', 'member-item');
   var memberItem =
     "<span class='member-id'>" +
     id +
@@ -98,11 +114,16 @@ function addMember() {
 
   household.push(member);
   id++;
+
+  //reset fields
+  inputAge.value = '';
+  relationship = inputRel.value = '';
+  inputSmoker.checked = false;
 }
 
 function deleteMember(e) {
   var idx = e.target.parentNode.childNodes[0].innerHTML;
-  var indexToDelete = household.findIndex(function (ele) {
+  var indexToDelete = household.findIndex(function match(ele) {
     ele.id === idx;
   });
 
