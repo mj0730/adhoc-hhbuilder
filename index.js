@@ -1,4 +1,3 @@
-// your code goes here ...
 // - Validate data entry (age is required and > 0, relationship is required)
 // - Add people to a growing household list
 
@@ -12,9 +11,9 @@ var body = document.querySelector('body');
 var buttonAdd = document.querySelector('.add');
 var buttonSubmit = document.querySelector('button[type="submit"]');
 var debug = document.querySelector('.debug');
-var formContainer = document.querySelector('.builder');
 var inputAge = document.querySelector('input[name="age"]');
-var form = document.querySelector('form');
+var inputRel = document.querySelector('select[name="rel"]');
+var inputSmoker = document.querySelector('input[name="smoker"]');
 
 var id = 1;
 var household = [];
@@ -22,14 +21,16 @@ var household = [];
 //Not allowed to touch index.html, handle styling here
 var styles = {};
 
-//basic setup
+//basic validation & setup
 inputAge.type = 'number';
 inputAge.setAttribute('min', 0);
+inputAge.setAttribute('required', true);
 
 buttonAdd.type = 'button';
 
 //event listeners
 buttonAdd.addEventListener('click', addMember);
+buttonSubmit.addEventListener('click', handleSubmit);
 
 //add display for form input
 var sectionDisplayInput = document.createElement('section');
@@ -50,15 +51,21 @@ sectionDisplayInput.appendChild(headers);
 body.insertBefore(sectionDisplayInput, debug);
 
 //functions
-
-function resetForm() {
-  // - Reset the entry form after each addition
-}
-
 function addMember() {
   var age = inputAge.value;
-  var relationship = document.getElementsByName('rel')[0].value;
-  var smoker = document.getElementsByName('smoker')[0].value;
+  var relationship = inputRel.value;
+  var smoker = inputSmoker.checked ? 'Yes' : 'No';
+
+  //validate required fields
+  if (age == '') {
+    console.error('age is required');
+    return;
+  }
+
+  if (relationship == '') {
+    console.error('relationship is required');
+    return;
+  }
 
   var member = {
     id: id,
@@ -103,4 +110,7 @@ function deleteMember(e) {
   household.splice(indexToDelete, 1);
 }
 
-function handleSubmit() {}
+function handleSubmit(e) {
+  e.preventDefault();
+  debug.innerHTML = JSON.stringify(household);
+}
