@@ -8,21 +8,15 @@
 // You must only use features from the ES5 standard.
 // After submission, the user should be able to make changes and submit the household again.
 
-var body = document.getElementsByTagName('body')[0];
-var buttonsList = document.getElementsByTagName('button');
-var buttonAdd = document.getElementsByClassName('add')[0];
-var buttonSubmit = buttonsList[buttonsList.length - 1];
-var debug = document.getElementsByClassName('debug')[0];
-var formContainer = document.getElementsByClassName('builder')[0];
-var inputAge = document.getElementsByName('age')[0];
-var form = document.getElementsByTagName('form')[0];
-// var listHousehold = document.getElementsByClassName('household')[0];
+var body = document.querySelector('body');
+var buttonAdd = document.querySelector('.add');
+var buttonSubmit = document.querySelector('button[type="submit"]');
+var debug = document.querySelector('.debug');
+var formContainer = document.querySelector('.builder');
+var inputAge = document.querySelector('input[name="age"]');
+var form = document.querySelector('form');
 
-//form values
-// var age = inputAge.value;
-// var relationship = document.getElementsByName('rel')[0].value;
-// var smoker = document.getElementsByName('smoker')[0].value;
-
+var id = 1;
 var household = [];
 
 //Not allowed to touch index.html, handle styling here
@@ -62,12 +56,12 @@ function resetForm() {
 }
 
 function addMember() {
-  var id = household.length + 1;
   var age = inputAge.value;
   var relationship = document.getElementsByName('rel')[0].value;
   var smoker = document.getElementsByName('smoker')[0].value;
 
   var member = {
+    id: id,
     age: age,
     relationship: relationship,
     smoker: smoker,
@@ -86,7 +80,7 @@ function addMember() {
     smoker +
     "</span><span class='delete' onClick=" +
     deleteMember +
-    '>X</span>';
+    '>&CircleTimes;</span>';
 
   div.innerHTML = memberItem;
   sectionDisplayInput.appendChild(div);
@@ -96,10 +90,17 @@ function addMember() {
   buttonDelete.addEventListener('click', deleteMember);
 
   household.push(member);
+  id++;
 }
 
 function deleteMember(e) {
+  var idx = e.target.parentNode.childNodes[0].innerHTML;
+  var indexToDelete = household.findIndex(function (ele) {
+    ele.id === idx;
+  });
+
   e.target.parentNode.remove();
+  household.splice(indexToDelete, 1);
 }
 
 function handleSubmit() {}

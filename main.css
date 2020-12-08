@@ -27,3 +27,7 @@ section {
   flex-flow: row nowrap;
   justify-content: space-between;
 }
+
+.delete {
+  color: red;
+}
