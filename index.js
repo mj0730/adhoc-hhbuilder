@@ -36,19 +36,18 @@ var headers = document.createElement('div');
 headers.classList.add('flex', 'headers');
 
 var labels = ['ID', 'Age', 'Relationship', 'Smoke?', 'Delete'];
-for (var i = 0; i < labels.length; i++) {
+labels.forEach(function (label) {
   var span = document.createElement('span');
-  span.classList.add('member-' + labels[i]);
-  span.innerHTML = labels[i];
+  span.classList.add('member-' + label);
+  span.innerHTML = label;
 
   headers.appendChild(span);
-}
+});
 
 sectionDisplayInput.appendChild(headers);
 
 body.insertBefore(sectionDisplayInput, debug);
 
-//functions
 function addMember() {
   var age = inputAge.value;
   var relationship = inputRel.value;
@@ -64,8 +63,8 @@ function addMember() {
   tooltip.classList.add('tooltip');
   tooltip.innerHTML = 'Field is required.';
 
-  if (age === '' || age < 0) {
-    console.error('age is required');
+  if (age === '' || age < 1) {
+    console.error('Age is required');
 
     inputAge.parentNode.appendChild(tooltip);
 
@@ -112,7 +111,7 @@ function addMember() {
 
   //reset fields
   inputAge.value = '';
-  relationship = inputRel.value = '';
+  inputRel.value = '';
   inputSmoker.checked = false;
 }
 
